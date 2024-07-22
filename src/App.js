@@ -1,24 +1,55 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate, Link } from 'react-router-dom';
+import Register from './components/Register';
+import Login from './components/Login';
+import ChirpsList from './components/ChirpsList';
+import GuestLayout from './layouts/GuestLayout';
+import AppLayout from './layouts/AppLayout';
 
 function App() {
+  const [token, setToken] = useState(localStorage.getItem('token'));
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route
+            path="/register"
+            element={
+              <GuestLayout>
+                <Register />
+              </GuestLayout>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <GuestLayout>
+                <Login setToken={setToken} />
+              </GuestLayout>
+            }
+          />
+          <Route
+            path="/chirps"
+            element={
+              token ? (
+                <AppLayout setToken={setToken}>
+                  <ChirpsList />
+                </AppLayout>
+              ) : (
+                <Navigate to="/login" />
+              )
+            }
+          />
+          <Route
+            path="/"
+            element={
+              <Navigate to={token ? "/chirps" : "/login"} />
+            }
+          />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
