@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const apiClient = axios.create({
+  // @todo Can be improve to based on .env setup.
   baseURL: 'http://localhost:8000/api',
   withCredentials: true,
   headers: {
