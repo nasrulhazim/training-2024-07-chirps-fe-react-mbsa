@@ -38,5 +38,7 @@ export default {
   logout() {
     return apiClient.post('/logout');
   },
-  // Add other CRUD methods as needed
+  postChirp(data) {
+    return apiClient.post('/chirps', data);
+  }
 };
