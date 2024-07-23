@@ -16,7 +16,7 @@ npm install axios
 Install React Routing package:
 
 ```bash
-npm react-router-dom
+npm install react-router-dom
 ```
 
 Install TailwindCSS:
