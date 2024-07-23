@@ -5,7 +5,7 @@ Install:
 ```bash
 npx create-react-app chirper-frontend
 cd chirper-frontend
-
+```
 
 Install axios (use to call API endpoints):
 
