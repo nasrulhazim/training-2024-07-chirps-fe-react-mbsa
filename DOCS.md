@@ -4,8 +4,24 @@ Install:
 
 ```bash
 npx create-react-app chirper-frontend
+cd chirper-frontend
+
+
+Install axios (use to call API endpoints):
+
+```bash
 npm install axios
+```
+
+Install React Routing package:
+
+```bash
 npm react-router-dom
+```
+
+Install TailwindCSS:
+
+```bash
 npm install -D tailwindcss postcss autoprefixer
 npx tailwindcss init -p
 ```
