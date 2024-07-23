@@ -40,5 +40,8 @@ export default {
   },
   postChirp(data) {
     return apiClient.post('/chirps', data);
+  },
+  deleteChirp(id) {
+    return apiClient.delete(`/chirps/${id}`);
   }
 };

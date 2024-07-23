@@ -37,6 +37,17 @@ const ChirpsList = () => {
     }
   };
 
+  const deleteChirp = async (id) => {
+    try {
+      if(window.confirm('Are you sure want to delete this chirp?')) {
+        await ApiService.deleteChirp(id);
+        setChirps(chirps.filter(chirp => chirp.id !== id));
+      }
+    } catch (error) {
+      console.error('Failed to delete chirp', error);
+    }
+  };
+
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Chirps</h1>
@@ -62,8 +73,17 @@ const ChirpsList = () => {
         <div className="space-y-4 mt-4">
           {chirps.map(chirp => (
             <div key={chirp.id} className="p-4 bg-white shadow-md rounded-md">
-              <p className="text-gray-700">{chirp.message}</p>
-              <p className="text-sm text-gray-500">- {chirp.user.name}</p>
+              <div className="flex justify-between">
+                <div>
+                  <p className="text-gray-700 text-ellipsis">{chirp.message}</p>
+                  <p className="text-sm text-gray-500">- {chirp.user.name}</p>
+                </div>
+                <button
+                  onClick={() => deleteChirp(chirp.id)}
+                  className="mt-2 px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600">
+                  Delete
+                </button>
+              </div>
             </div>
           ))}
         </div>
